@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+    <div class="left_head">
+        <h1>Погода здесь</h1>
+    </div>
+    <div class="right_head">
+        <button class="refresh_geo_btn">
+            <span class="geo_btn_text only_desktop">Обновть геолокацию</span>
+            <div class="only_mobile">
+                <img src="img/refresh.jpg">
+            </div>
+        </button>
+    </div>
+</header>
+
+<main class="main">
+    <section class="current_city">
+        <div class="city">
+
+            <div class="city_preview">
+                <h2 class="city_name">Belgorod</h2>
+                <img class="weather_icon" src="img/cloudy.svg">
+                <div class="degrees">+15 C</div>
+            </div>
+
+            <ul class="city_info">
+                <li class="city_info_topic">
+                    <span class="city_info_key">Ветер</span>
+                    <span class="city_info_value">North, 6 m/s</span>
+                </li>
+                <li class="city_info_topic">
+                    <span class="city_info_key">Облачность</span>
+                    <span class="city_info_value">Ясно</span>
+                </li>
+                <li class="city_info_topic">
+                    <span class="city_info_key">Давление</span>
+                    <span class="city_info_value">1013 hpa</span>
+                </li>
+                <li class="city_info_topic">
+                    <span class="city_info_key">Влажность</span>
+                    <span class="city_info_value">52%</span>
+                </li>
+                <li class="city_info_topic">
+                    <span class="city_info_key">Координаты</span>
+                    <span class="city_info_value">[60.0, 60.0]</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="fav_cities">
+        <div class="fav_cities_header">
+            <h2>Избранное</h2>
+            <form>
+                <input type="text" placeholder="Добавить новый город">
+                <button class="submit_btn">+</button>
+            </form>
+        </div>
+        <ul class="fav_city_list">
+            <li class="fav_city">
+
+                <div class="city_preview">
+                    <h2 class="city_name">Belgorod</h2>
+                    <div class="degrees">+15 C</div>
+                    <img class="weather_icon"  src="img/cloudy.svg">
+                    <button class="delete_btn">x</button>
+                </div>
+
+                <ul class="city_info">
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Ветер</span>
+                        <span class="city_info_value">North, 6 m/s</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Облачность</span>
+                        <span class="city_info_value">Ясно</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Давление</span>
+                        <span class="city_info_value">1013 hpa</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Влажность</span>
+                        <span class="city_info_value">52%</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Координаты</span>
+                        <span class="city_info_value">[60.0, 60.0]</span>
+                    </li>
+                </ul>
+            </li>
+
+<!--            cpy-->
+            <li class="fav_city">
+
+                <div class="city_preview">
+                    <h2 class="city_name">Belgorod</h2>
+                    <div class="degrees">+15 C</div>
+                    <img class="weather_icon"  src="img/cloudy.svg">
+                    <button class="delete_btn">x</button>
+                </div>
+
+                <ul class="city_info">
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Ветер</span>
+                        <span class="city_info_value">North, 6 m/s</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Облачность</span>
+                        <span class="city_info_value">Ясно</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Давление</span>
+                        <span class="city_info_value">1013 hpa</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Влажность</span>
+                        <span class="city_info_value">52%</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Координаты</span>
+                        <span class="city_info_value">[60.0, 60.0]</span>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="fav_city">
+
+                <div class="city_preview">
+                    <h2 class="city_name">Belgorod</h2>
+                    <div class="degrees">+15 C</div>
+                    <img class="weather_icon"  src="img/cloudy.svg">
+                    <button class="delete_btn">x</button>
+                </div>
+
+                <ul class="city_info">
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Ветер</span>
+                        <span class="city_info_value">North, 6 m/s</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Облачность</span>
+                        <span class="city_info_value">Ясно</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Давление</span>
+                        <span class="city_info_value">1013 hpa</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Влажность</span>
+                        <span class="city_info_value">52%</span>
+                    </li>
+                    <li class="city_info_topic">
+                        <span class="city_info_key">Координаты</span>
+                        <span class="city_info_value">[60.0, 60.0]</span>
+                    </li>
+                </ul>
+            </li>
+
+<!--            end cpy-->
+        </ul>
+    </section>
+</main>
+
+
+</body>
+</html>

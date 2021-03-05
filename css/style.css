@@ -59,7 +59,7 @@ header {
 }
 
 
-h2 {
+h2, h3 {
     font-family: "Times New Roman";
     font_size: 2.5em;
     margin: 0;

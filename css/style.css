@@ -182,7 +182,7 @@ input {
     font-weight: lighter;
 }
 
-.only_mobile > img {
+.only_mobile {
     width: 20px;
     height: 20px;
 }
@@ -207,7 +207,7 @@ form {
     }
 
     .refresh_geo_btn {
-        width: 30px;
+        width: 40px;
         height: 30px;
     }
 

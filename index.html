@@ -33,6 +33,49 @@
             </form>
         </div>
         <ul class="fav_city_list" id="fav_city_list">
+
+            <template id="tmpl_load">
+                <li class="fav_city">
+                    <div class="city_preview">
+                        <h3 class="city_name"></h3>
+                        <button class="delete_btn"></button>
+                    </div>
+                    <div class="load_status"></div>
+                </li>
+            </template>
+
+            <template id="tmpl_city">
+                <li class="fav_city">
+                    <div class="city_preview">
+                        <h2 class="city_name"></h2>
+                        <img class="weather_icon">
+                        <div class="degrees"></div>
+                        <button class="delete_btn"></button>
+                    </div>
+                    <ul class="city_info">
+                        <li class="city_info_topic">
+                            <span class="city_info_key">Облачность</span>
+                            <span class="city_info_value"></span>
+                        </li>
+                        <li class="city_info_topic">
+                            <span class="city_info_key">Ветер</span>
+                            <span class="city_info_value"></span>
+                        </li>
+                        <li class="city_info_topic">
+                            <span class="city_info_key">Давление</span>
+                            <span class="city_info_value"></span>
+                        </li>
+                        <li class="city_info_topic">
+                            <span class="city_info_key">Влажность</span>
+                            <span class="city_info_value"></span>
+                        </li>
+                        <li class="city_info_topic">
+                            <span class="city_info_key">Координаты</span>
+                            <span class="city_info_value"></span>
+                        </li>
+                    </ul>
+                </li>
+            </template>
         </ul>
     </section>
 </main>

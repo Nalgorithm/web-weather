@@ -8,121 +8,114 @@ class Pair {
     }
 }
 
-let Templates = {
-    cityInfo: function (dict) {
-        let windDirection
-        let deg = dict["wind"]["deg"]
-        switch (true) {
-            case deg >= 348.75 || deg <= 11.25:
-                windDirection = "N"
-                break
-            case deg >= 11.25 && deg <= 33.75:
-                windDirection = "NNE"
-                break
-            case deg >= 33.75 && deg <= 56.25:
-                windDirection = "NE"
-                break
-            case deg >= 56.25 && deg <= 78.75:
-                windDirection = "ENE"
-                break
-            case deg >= 78.75 && deg <= 101.25:
-                windDirection = "E"
-                break
-            case deg >= 101.25 && deg <= 123.75:
-                windDirection = "ESE"
-                break
-            case deg >= 123.75 && deg <= 146.25:
-                windDirection = "SE"
-                break
-            case deg >= 146.25 && deg <= 168.65:
-                windDirection = "SSE"
-                break
-            case deg >= 168.65 && deg <= 191.25:
-                windDirection = "S"
-                break
-            case deg >= 191.25 && deg <= 213.75:
-                windDirection = "SSW"
-                break
-            case deg >= 213.75 && deg <= 236.25:
-                windDirection = "SW"
-                break
-            case deg >= 236.25 && deg <= 258.75:
-                windDirection = "WSW"
-                break
-            case deg >= 258.75 && deg <= 281.25:
-                windDirection = "W"
-                break
-            case deg >= 281.25 && deg <= 303.75:
-                windDirection = "WNW"
-                break
-            case deg >= 303.75 && deg <= 326.25:
-                windDirection = "NW"
-                break
-            case deg >= 326.25 && deg <= 348.75:
-                windDirection = "NNW"
-                break
-        }
-        return `
-        <ul class="city_info">
-            <li class="city_info_topic">
-                <span class="city_info_key">Облачность</span>
-                <span class="city_info_value">`+dict["clouds"]["all"]+` %</span>
-            </li>
-            <li class="city_info_topic">
-                <span class="city_info_key">Ветер</span>
-                <span class="city_info_value">`+dict["wind"]["speed"]+` m/s, `+windDirection+`</span>
-            </li>
-            <li class="city_info_topic">
-                <span class="city_info_key">Давление</span>
-                <span class="city_info_value">`+dict["main"]["pressure"]+` hpa</span>
-            </li>
-            <li class="city_info_topic">
-                <span class="city_info_key">Влажность</span>
-                <span class="city_info_value">`+dict["main"]["humidity"]+` %</span>
-            </li>
-            <li class="city_info_topic">
-                <span class="city_info_key">Координаты</span>
-                <span class="city_info_value">[ `+dict["coord"]["lat"]+`, `+dict["coord"]["lon"]+` ]</span>
-            </li>
-        </ul>
-        `
-    },
+let getWindDirection = function (deg){
+    let windDirection
+    switch (true) {
+        case deg >= 348.75 || deg <= 11.25:
+            windDirection = "N"
+            break
+        case deg >= 11.25 && deg <= 33.75:
+            windDirection = "NNE"
+            break
+        case deg >= 33.75 && deg <= 56.25:
+            windDirection = "NE"
+            break
+        case deg >= 56.25 && deg <= 78.75:
+            windDirection = "ENE"
+            break
+        case deg >= 78.75 && deg <= 101.25:
+            windDirection = "E"
+            break
+        case deg >= 101.25 && deg <= 123.75:
+            windDirection = "ESE"
+            break
+        case deg >= 123.75 && deg <= 146.25:
+            windDirection = "SE"
+            break
+        case deg >= 146.25 && deg <= 168.65:
+            windDirection = "SSE"
+            break
+        case deg >= 168.65 && deg <= 191.25:
+            windDirection = "S"
+            break
+        case deg >= 191.25 && deg <= 213.75:
+            windDirection = "SSW"
+            break
+        case deg >= 213.75 && deg <= 236.25:
+            windDirection = "SW"
+            break
+        case deg >= 236.25 && deg <= 258.75:
+            windDirection = "WSW"
+            break
+        case deg >= 258.75 && deg <= 281.25:
+            windDirection = "W"
+            break
+        case deg >= 281.25 && deg <= 303.75:
+            windDirection = "WNW"
+            break
+        case deg >= 303.75 && deg <= 326.25:
+            windDirection = "NW"
+            break
+        case deg >= 326.25 && deg <= 348.75:
+            windDirection = "NNW"
+            break
+    }
 
-    cityPreviewTop: function (dict) {
-        let temp = Math.round(dict["main"]["temp"] - 273)
-        return `
-        <div class="city_preview">
-            <h2 class="city_name">`+dict["name"]+`</h2>
-            <img class="weather_icon" src="`+"https://openweathermap.org/img/w/" + dict["weather"][0]["icon"] + ".png"+`">
-            <div class="degrees">`+temp+` C</div>
-        </div>
-        `
-    },
+    return windDirection
+}
 
-    cityListLoadingItem: function (name, status) {
-        return `
-        <li class="fav_city" id="list-city-`+name+`">
-            <div class="city_preview">
-                <h3 class="city_name">`+name+`</h3>
-                <button class="delete_btn" id="delete-city-`+name+`">x</button>
-            </div>
-            <div id="status-city-`+name+`">`+status+`</div>
-        </li>
-        `
-    },
 
-    cityListItem: function (dict) {
-        let temp = Math.round(dict["main"]["temp"] - 273)
-        return `
-        <div class="city_preview">
-            <h2 class="city_name">`+dict["name"]+`</h2>
-            <img class="weather_icon" src="`+"https://openweathermap.org/img/w/" + dict["weather"][0]["icon"] + ".png"+`">
-            <div class="degrees">`+temp+` C</div>
-            <button class="delete_btn" id="delete-city-`+dict["id"]+`">x</button>
-        </div>
+class Template {
+    static MakeTmpl(weather) {
+        let tmpl = document.querySelector('#tmpl_city').content
 
-        
-        ` + this.cityInfo(dict)
+        let params = tmpl.querySelectorAll(".city_info_value")
+
+        params[0].innerHTML = weather["clouds"]["all"] + " %"
+        params[1].innerHTML = weather["wind"]["speed"] +" m/s " + getWindDirection(weather["wind"]["deg"])
+        params[2].innerHTML = weather["main"]["pressure"]+ " hpa"
+        params[3].innerHTML = weather["main"]["humidity"]+ " %"
+        params[4].innerHTML = "[ " + weather["coord"]["lat"] + ", " + weather["coord"]["lon"] +" ]"
+
+        let cityName = tmpl.querySelector('.city_name')
+        cityName.innerHTML = weather["name"]
+
+        let icon= tmpl.querySelector(".weather_icon")
+        icon.setAttribute("src", "https://openweathermap.org/img/w/" + weather["weather"][0]["icon"] + ".png")
+
+        let deg = tmpl.querySelector(".degrees")
+        let temp = Math.round(weather["main"]["temp"] - 273)
+        deg.innerHTML = temp + " C"
+
+        let btn = tmpl.querySelector(".delete_btn")
+        btn.setAttribute("id", "delete-city-" +weather["id"])
+        btn.innerHTML = "x"
+
+        let clone =  tmpl.cloneNode(true)
+        let parEl = document.querySelector("#fav_city_list")
+        parEl.appendChild(clone)
+    }
+
+    static MakeLoadTmpl(name, status) {
+        let tmpl = document.querySelector('#tmpl_load').content
+
+        let favCity = tmpl.querySelector(".fav_city")
+        favCity.setAttribute("id", "list-city-" + name)
+
+        let cityName = tmpl.querySelector('.city_name')
+        cityName.innerHTML = name
+
+        let btn = tmpl.querySelector(".delete_btn")
+        btn.setAttribute("id", "delete-city-" + name)
+        btn.innerHTML = "x"
+
+        let statEl = tmpl.querySelector(".load_status")
+        statEl.setAttribute("id", "status-city-" + name)
+        statEl.innerHTML = status
+
+        let clone =  tmpl.cloneNode(true)
+        let parEl = document.querySelector("#fav_city_list")
+        parEl.appendChild(clone)
     }
 }
 
@@ -193,9 +186,7 @@ let viewShowCurrentCity = function () {
 
     weatherCurrentLocApi()
         .then(function (dict) {
-            selector.innerHTML = ""
-            selector.insertAdjacentHTML("afterbegin", Templates.cityInfo(dict))
-            selector.insertAdjacentHTML("afterbegin", Templates.cityPreviewTop(dict))
+            Template.MakeTmpl(dict)
         },
         function (error) {
             selector.innerHTML = "Произошла ошибка сорян"
@@ -221,21 +212,24 @@ let attachDeleteListener = function () {
 }
 
 let viewAddCity = function (cityName, shouldAddCity) {
-    let favCityListSelector = document.getElementById("fav_city_list")
-
-    favCityListSelector.insertAdjacentHTML("afterbegin", Templates.cityListLoadingItem(cityName, "Загрузка"))
+    Template.MakeLoadTmpl(cityName, "Загрузка")
 
     attachDeleteListener()
     weatherApiGet(cityName)
         .then(function (weather) {
-            document.getElementById("list-city-"+cityName).innerHTML = Templates.cityListItem(weather)
-            if (shouldAddCity) {
-                localStorage.setItem(weather["id"], weather["name"])
+            if (shouldAddCity && localStorage.getItem(weather["id"]) !== null) {
+                alert("Город с таким названием уже добавлен")
+                document.getElementById("list-city-"+cityName).remove()
+                return
             }
+            document.getElementById("list-city-"+cityName).remove()
+            Template.MakeTmpl(weather)
+            localStorage.setItem(weather["id"], weather["name"])
             attachDeleteListener()
         })
         .catch(function (error) {
-            document.getElementById("list-city-"+cityName).innerHTML = Templates.cityListLoadingItem(cityName, "Ошибка "+error)
+            document.getElementById("list-city-"+cityName).remove()
+            Template.MakeLoadTmpl(cityName, "Ошибка "+error)
             attachDeleteListener()
         })
 }

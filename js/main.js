@@ -117,6 +117,32 @@ class Template {
         let parEl = document.querySelector("#fav_city_list")
         parEl.appendChild(clone)
     }
+
+    static MakeCurCityTmpl(weather) {
+        let tmpl = document.querySelector('#tmpl_cur_city').content
+
+        let params = tmpl.querySelectorAll(".city_info_value")
+
+        params[0].innerHTML = weather["clouds"]["all"] + " %"
+        params[1].innerHTML = weather["wind"]["speed"] +" m/s " + getWindDirection(weather["wind"]["deg"])
+        params[2].innerHTML = weather["main"]["pressure"]+ " hpa"
+        params[3].innerHTML = weather["main"]["humidity"]+ " %"
+        params[4].innerHTML = "[ " + weather["coord"]["lat"] + ", " + weather["coord"]["lon"] +" ]"
+
+        let cityName = tmpl.querySelector('.city_name')
+        cityName.innerHTML = weather["name"]
+
+        let icon= tmpl.querySelector(".weather_icon")
+        icon.setAttribute("src", "https://openweathermap.org/img/w/" + weather["weather"][0]["icon"] + ".png")
+
+        let deg = tmpl.querySelector(".degrees")
+        let temp = Math.round(weather["main"]["temp"] - 273)
+        deg.innerHTML = temp + " C"
+
+        let clone =  tmpl.cloneNode(true)
+        let parEl = document.querySelector("#current_city_info")
+        parEl.appendChild(clone)
+    }
 }
 
 let myLocation = function() {
@@ -182,14 +208,18 @@ let weatherCurrentLocApi = function () {
 let viewShowCurrentCity = function () {
     let selector = document.querySelector("#current_city_info")
 
-    selector.innerHTML = "Загрузка"
+    let downLoadSpan = document.createElement('span')
+    downLoadSpan.innerHTML = "Загрузка"
+
+    selector.appendChild(downLoadSpan)
 
     weatherCurrentLocApi()
         .then(function (dict) {
-            Template.MakeTmpl(dict)
+            downLoadSpan.remove()
+            Template.MakeCurCityTmpl(dict)
         },
         function (error) {
-            selector.innerHTML = "Произошла ошибка сорян"
+            downLoadSpan.innerHTML = "Произошла ошибка сорян"
         })
 }
 

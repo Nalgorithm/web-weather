@@ -208,18 +208,15 @@ let weatherCurrentLocApi = function () {
 let viewShowCurrentCity = function () {
     let selector = document.querySelector("#current_city_info")
 
-    let downLoadSpan = document.createElement('span')
-    downLoadSpan.innerHTML = "Загрузка"
-
-    selector.appendChild(downLoadSpan)
+    selector.innerHTML = "Загрузка"
 
     weatherCurrentLocApi()
         .then(function (dict) {
-            downLoadSpan.remove()
+            selector.innerHTML = ""
             Template.MakeCurCityTmpl(dict)
         },
         function (error) {
-            downLoadSpan.innerHTML = "Произошла ошибка сорян"
+            selector.innerHTML = "Произошла ошибка сорян"
         })
 }
 

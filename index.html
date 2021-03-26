@@ -21,35 +21,7 @@
 <main class="main">
     <section class="current_city">
         <div class="city" id="current_city_info">
-            <template id="tmpl_cur_city">
-                <div class="city_preview">
-                    <h2 class="city_name"></h2>
-                    <img class="weather_icon">
-                    <div class="degrees"></div>
-                </div>
-                <ul class="city_info">
-                    <li class="city_info_topic">
-                        <span class="city_info_key">Облачность</span>
-                        <span class="city_info_value"></span>
-                    </li>
-                    <li class="city_info_topic">
-                        <span class="city_info_key">Ветер</span>
-                        <span class="city_info_value"></span>
-                    </li>
-                    <li class="city_info_topic">
-                        <span class="city_info_key">Давление</span>
-                        <span class="city_info_value"></span>
-                    </li>
-                    <li class="city_info_topic">
-                        <span class="city_info_key">Влажность</span>
-                        <span class="city_info_value"></span>
-                    </li>
-                    <li class="city_info_topic">
-                        <span class="city_info_key">Координаты</span>
-                        <span class="city_info_value"></span>
-                    </li>
-                </ul>
-            </template>
+
         </div>
     </section>
     <section class="fav_cities">
@@ -107,6 +79,35 @@
         </ul>
     </section>
 </main>
+<template id="tmpl_cur_city">
+    <div class="city_preview">
+        <h2 class="city_name"></h2>
+        <img class="weather_icon">
+        <div class="degrees"></div>
+    </div>
+    <ul class="city_info">
+        <li class="city_info_topic">
+            <span class="city_info_key">Облачность</span>
+            <span class="city_info_value"></span>
+        </li>
+        <li class="city_info_topic">
+            <span class="city_info_key">Ветер</span>
+            <span class="city_info_value"></span>
+        </li>
+        <li class="city_info_topic">
+            <span class="city_info_key">Давление</span>
+            <span class="city_info_value"></span>
+        </li>
+        <li class="city_info_topic">
+            <span class="city_info_key">Влажность</span>
+            <span class="city_info_value"></span>
+        </li>
+        <li class="city_info_topic">
+            <span class="city_info_key">Координаты</span>
+            <span class="city_info_value"></span>
+        </li>
+    </ul>
+</template>
 <script type="application/javascript" src="js/main.js"></script>
 
 </body>
